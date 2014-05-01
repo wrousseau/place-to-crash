@@ -1,2 +1,3 @@
-# placetocrash
-### a Sails application
+place-to-crash
+
+Place to crash web application, powered by sails.js
