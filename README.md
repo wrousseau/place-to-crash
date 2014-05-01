@@ -19,3 +19,8 @@ PlaceToCrash requires [node.js](http://nodejs.org/) and npm, its package manager
     npm install
 
 should install all the needed packages, including sails itself.
+
+Licence
+-------
+PlaceToCrash is licence under the Apache v.2 (commercial friendly basically).
+
