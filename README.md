@@ -1,0 +1,2 @@
+# placetocrash
+### a Sails application
