@@ -15,5 +15,7 @@ The project is only getting started, but the friendship relations shall be manag
 Prerequisites
 -------------
 PlaceToCrash requires [node.js](http://nodejs.org/) and npm, its package manager. Running 
+
     npm install
+
 should install all the needed packages, including sails itself.
