@@ -20,6 +20,14 @@ PlaceToCrash requires [node.js](http://nodejs.org/) and npm, its package manager
 
 should install all the needed packages, including sails itself.
 
+PlaceToCrash's Graph Database uses Neo4j, which requires to be installed and launched on your local machine (requires Java JDK). For all platforms, instructions are available on their [official website](http://www.neo4j.org/download). For MacOS X using Homebrew, simply use :
+
+    brew update
+    brew install neo4j
+    neo4j start
+
+The setup for giving your credentiels should be made in config/adapters.js for a production setup and in config/local.js for a development setting. Default values should be relevant if you followed the basic neo4j installation.
+
 Licence
 -------
 PlaceToCrash is licence under the Apache v.2 (commercial friendly basically).

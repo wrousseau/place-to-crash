@@ -1,21 +1,51 @@
 {
     "name": "placetocrash",
-    "private": true,
-    "version": "0.0.0",
-    "description": "a Sails application",
+    "private": false,
+    "version": "0.0.1",
+    "description": "PlaceToCrash is a close friends social network for finding places to crash when on a trip",
     "dependencies": {
         "sails": "0.9.16",
         "grunt": "0.4.1",
         "sails-disk": "~0.9.0",
         "ejs": "0.8.4",
-        "optimist": "0.3.4"
+        "optimist": "0.3.4",
+        "bcrypt": "~0.7.8",
+        "sails-neo4j": "git+https://github.com/wrousseau/sails-neo4j"
     },
     "scripts": {
         "start": "node app.js",
         "debug": "node debug app.js"
     },
     "main": "app.js",
-    "repository": "",
-    "author": "",
-    "license": ""
+    "author": "Woody Rousseau <woody.rousseau@ensta-paristech.fr>",
+    "author": "vanetix <matmcfarland@gmail.com>",
+    "contributors": [
+        {
+          "name": "Woody Rousseau",
+          "email": "woody.rousseau@ensta-paristech.fr"
+        },
+        {
+          "name": "Sammy Teillet"
+        }
+    ],
+    "repository": {
+    "type": "git",
+        "url": "https://github.com/wrousseau/placetocrash.git"
+    },
+    "keywords": [
+        "social",
+        "network",
+        "localisation",
+        "housing",
+        "circle",
+        "friends",
+        "road",
+        "trip",
+        "holidays",
+        "sailsjs",
+        "sails.js",
+        "neo4j"
+    ],
+    "readmeFilename": "README.md",
+    "license": "Apache-2.0"
 }

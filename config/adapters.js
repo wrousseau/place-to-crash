@@ -24,6 +24,14 @@ module.exports.adapters = {
     module: 'sails-disk'
   },
 
+  neo4j: {
+    module: 'sails-neo4j',
+    protocol: 'http://',
+    port: 7474,
+    host: 'localhost',
+    base: '/db/data/',
+  },
+
   // MySQL is the world's most popular relational database.
   // Learn more: http://en.wikipedia.org/wiki/MySQL
   myLocalMySQLDatabase: {
