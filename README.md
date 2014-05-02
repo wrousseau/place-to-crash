@@ -14,19 +14,35 @@ The project is only getting started, but the friendship relations shall be manag
 
 Prerequisites
 -------------
-PlaceToCrash requires [node.js](http://nodejs.org/) and npm, its package manager. Running 
+PlaceToCrash requires [node.js](http://nodejs.org/) and npm, its package manager. 
 
-    npm install
+For front-end package management, PlaceToCrash relies on Bower and Grunt tasks. For the back-end, PlaceToCrash relies on the Sails.js framework. To use these, install them globally (try sudo if you're getting an error) :
 
-should install all the needed packages, including sails itself.
+    npm install -g grunt-cli
+    npm install -g bower
+    npm install -g sails
 
-PlaceToCrash's Graph Database uses Neo4j, which requires to be installed and launched on your local machine (requires Java JDK). For all platforms, instructions are available on their [official website](http://www.neo4j.org/download). For MacOS X using Homebrew, simply use :
+Finally, PlaceToCrash's Graph Database is Neo4j, which requires to be installed and launched on your local machine (requires Java JDK). For all platforms, instructions are available on their [official website](http://www.neo4j.org/download). For MacOS X using Homebrew, simply use :
 
     brew update
     brew install neo4j
     neo4j start
 
+Installation and Configuration
+------------------------------
+
+    npm install && grunt bower
+
+should install all the needed packages and handle front-end packages, including sails itself and 
+
 The setup for giving your credentiels should be made in config/adapters.js for a production setup and in config/local.js for a development setting. Default values should be relevant if you followed the basic neo4j installation.
+
+Running
+-------
+
+    sails lift
+
+Should launch the server on the port specified in config/local.js
 
 Licence
 -------

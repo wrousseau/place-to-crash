@@ -29,6 +29,8 @@ module.exports = function (grunt) {
    */
 
   var cssFilesToInject = [
+    'linker/styles/vendor/bootstrap/bootstrap.min.css',
+    'linker/styles/vendor/bootstrap/bootstrap-theme.min.css',
     'linker/**/*.css'
   ];
 
@@ -57,6 +59,8 @@ module.exports = function (grunt) {
     'linker/js/app.js',
 
     // *->    put other dependencies here   <-*
+    'linker/js/vendor/jquery/jquery.min.js',
+
 
     // All of the rest of your app scripts imported here
     'linker/**/*.js'
@@ -133,6 +137,8 @@ module.exports = function (grunt) {
   grunt.loadTasks(depsPath + '/grunt-contrib-cssmin/tasks');
   grunt.loadTasks(depsPath + '/grunt-contrib-less/tasks');
   grunt.loadTasks(depsPath + '/grunt-contrib-coffee/tasks');
+
+  grunt.loadNpmTasks('grunt-bower-task');
 
   // Project configuration.
   grunt.initConfig({
@@ -408,6 +414,20 @@ module.exports = function (grunt) {
 
         // When assets are changed:
         tasks: ['compileAssets', 'linkAssets']
+      }
+    },
+
+    bower: {
+      install: {
+        options: {
+          targetDir: './assets/linker',
+          layout: 'byType',
+          install: true,
+          verbose: false,
+          cleanTargetDir: false,
+          cleanBowerDir: true,
+          bowerOptions: {}
+        }
       }
     }
   });
