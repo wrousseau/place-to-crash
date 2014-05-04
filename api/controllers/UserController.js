@@ -2,7 +2,7 @@
  * UserController
  *
  * @module      :: Controller
- * @description	:: A set of functions called `actions`.
+ * @description :: A set of functions called `actions`.
  *
  *                 Actions contain code telling Sails how to respond to a certain type of request.
  *                 (i.e. do stuff, then send some JSON, show an HTML page, or redirect to another URL)
@@ -16,7 +16,37 @@
  */
 
 var UserController = {
-
+    signup: function (req, res) {
+        if (req.method === "POST" && req.isAjax) {
+            console.log("mdr");
+            var username = req.param("username"),
+                password = req.param("password"),
+                firstName = req.param("firstName"),
+                lastName = req.param("lastName"),
+                email = req.param("email");
+            User.findByEmail(email).done(function(err, usr) {
+                if (err) {
+                    res.send(500, { error: "DB Error"});
+                } else if (usr.length > 0) {
+                    res.send(400, { error: "Username already Taken" });
+                } else {
+                    User.create({username: username, firstName: firstName, lastName: lastName, email: email, password: password}).done(function (error, user) {
+                        if (error) {
+                            res.send(500, { error: "DB Error" });
+                        } else {
+                            req.session.user = user;
+                            res.send(user);
+                        }
+                    });
+                }
+            });
+        } else {
+            res.view();
+        }
+    },
+    login: function (req, res) {
+        res.view();
+    }
 };
 
 module.exports = UserController;

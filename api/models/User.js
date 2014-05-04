@@ -21,10 +21,10 @@ module.exports = {
       maxLength: 30,
       required: true
     },
-    nickName: {
+    username: {
       type: 'string',
       maxLength: 30,
-      required: false
+      required: true
     },
     birthDate: {
       type: 'date',
