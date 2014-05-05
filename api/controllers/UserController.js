@@ -26,13 +26,13 @@ var UserController = {
                 email = req.param("email");
             User.findByEmail(email).done(function(err, usr) {
                 if (err) {
-                    res.send(500, { error: "DB Error"});
+                    res.send({error: "DB Error"}, 500);
                 } else if (usr.length > 0) {
-                    res.send(400, { error: "Username already Taken" });
+                    res.send({error: "Email already used"}, 400);
                 } else {
                     User.create({username: username, firstName: firstName, lastName: lastName, email: email, password: password}).done(function (error, user) {
                         if (error) {
-                            res.send(500, { error: "DB Error" });
+                            res.send({ error: "DB Error" }, 500);
                         } else {
                             req.session.user = user;
                             res.send(user);
