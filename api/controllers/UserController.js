@@ -34,7 +34,6 @@ var UserController = {
                     };
                     return res.redirect('/user/signup');
                 } else {
-                    if ()
                     User.create(req.params.all(), function userCreated (error, user) {
                         if (error) {
                             console.log(error);
@@ -45,12 +44,8 @@ var UserController = {
                             return res.redirect('/user/signup');
                         }
 
-                        req.session.flash = {
-                            success: {
-                                message: "Your User Account was successfully created."
-                            }
-                        };
                         res.json(user);
+                        req.session.flash = {};
                     });
                 }
             });

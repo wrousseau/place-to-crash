@@ -1,19 +1,12 @@
 <div class="row">
     <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-        <form role="form" method="POST" action="/user/create">
+        <form role="form" method="POST" action="/user/create" class="form-signup">
             <h2>S'enregistrer</h2>
             <hr>
             <% if(flash && flash.err) { %>
                 <ul class="alert alert-danger">
                 <% Object.keys(flash.err).forEach(function(error) { %>
                     <li><%- JSON.stringify(flash.err[error]) %></li>
-                <% }) %>
-                </ul>
-            <% } %>
-            <% if(flash && flash.success) { %>
-                <ul class="alert alert-success">
-                <% Object.keys(flash.success).forEach(function(message) { %>
-                    <li><%- JSON.stringify(flash.success[message]) %></li>
                 <% }) %>
                 </ul>
             <% } %>
@@ -61,7 +54,9 @@
             
             <hr>
             <div class="row">
-                <div class="col-xs-12 col-md-12"><input type="submit" value="S'enregistrer" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
+                <div class="col-xs-12 col-md-12">
+                    <input type="submit" value="S'enregistrer" class="btn btn-primary btn-block btn-lg" tabindex="7">
+                </div>
             </div>
             <input type="hidden" name="_csrf" value="<%= _csrf %>" />
         </form>

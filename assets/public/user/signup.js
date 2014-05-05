@@ -1,6 +1,5 @@
 $(function () {
     $('.button-checkbox').each(function () {
-
         // Settings
         var $widget = $(this),
             $button = $widget.find('button'),
@@ -61,5 +60,34 @@ $(function () {
             }
         }
         init();
+    });
+
+    $('.form-signup').validate({
+        rules: {
+            firstName: {
+                required: true
+            },
+            lastName: {
+                required: true
+            },
+            username: {
+                required: true
+            },
+            email: {
+                required: true,
+                email: true
+            },
+            password: {
+                minlength: 6,
+                required: true
+            },
+            passwordConfirmation: {
+                minlength: 6,
+                equalTo: "#password"
+            }
+        },
+        success: function(element) {
+            element.addClass('valid');
+        }
     });
 });
