@@ -16,8 +16,7 @@
     },
     "bootstrap": {
       "js/vendor": "dist/js/bootstrap.min.js",
-      "styles/vendor": "dist/css/*.min.css",
-      "fonts/vendor": "dist/fonts/*.*"
+      "styles/vendor": "dist/css/bootstrap-theme.min.css"
     }
   }
 }

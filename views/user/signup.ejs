@@ -1,28 +1,80 @@
-<div class="container">
-	<h1>PlaceToCrash</h1>
-    <h3>S'enregistrer</h3>
-    <div class="form-group">
-    	<label for="username">Nom d'Utilisateur</label>
-    	<input type="text" class="form-control" id="username" placeholder="Nom d'Utilisateur">
+<div class="row">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+        <form role="form">
+            <h2>S'enregistrer</h2>
+            <hr>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <div class="form-group">
+                        <input type="text" name="firstName" id="firstName" class="form-control input-lg" placeholder="Prénom" tabindex="1">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <div class="form-group">
+                        <input type="text" name="lastName" id="lastName" class="form-control input-lg" placeholder="Nom" tabindex="2">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="text" name="username" id="username" class="form-control input-lg" placeholder="Nom d'Utilisateur" tabindex="3">
+            </div>
+            <div class="form-group">
+                <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Adresse Email" tabindex="4">
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <div class="form-group">
+                        <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Mot de Passe" tabindex="5">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <div class="form-group">
+                        <input type="password" name="passwordConfirmation" id="passwordConfirmation" class="form-control input-lg" placeholder="Confirmation du Mot de Passe" tabindex="6">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 col-sm-3 col-md-3">
+                    <span class="button-checkbox">
+                        <button type="button" class="btn" data-color="info" tabindex="7">J'accepte</button>
+                        <input type="checkbox" name="t_and_c" id="t_and_c" class="hidden" value="1">
+                    </span>
+                </div>
+                <div class="col-xs-8 col-sm-9 col-md-9">
+                    En cliquant sur  <strong class="label label-primary">J'accepte</strong>, vous vous engagez à respecter les <a href="#" data-toggle="modal" data-target="#t_and_c_m">conditions d'utilisations</a> de l'application web, y compris l'utilisation des cookies
+                </div>
+            </div>
+            
+            <hr>
+            <div class="row">
+                <div class="col-xs-12 col-md-12"><input type="submit" value="S'enregistrer" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
+            </div>
+            <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+        </form>
     </div>
-    <div class="form-group">
-    	<label for="firstName">Nom</label>
-    	<input type="text" class="form-control" id="firstName" placeholder="Prénom">
-    	<input type="text" class="form-control" id="lastName" placeholder="Nom">
-    </div>
-    <div class="form-group">
-    	<label for="email">Adresse Email</label>
-    	<input type="email" class="form-control" id="email" placeholder="Email">
-    </div>
-    <div class="form-group">
-    	<label for="password">Mot de Passe</label>
-	    <input type="password" class="form-control" id="password" placeholder="Mot de Passe">
-	</div>
-	<div class="form-group">
-	    <label for="confirmPassword">Confirmation du Mot de Passe</label>
-	    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirmer le mot de passe">
-    </div>
-    <button type="submit" class="btn btn-default" id="signupButton">S'enregistrer</button>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="t_and_c_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Conditions d'Utilisation</h4>
+            </div>
+            <div class="modal-body">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">J'accepte</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
-<%- block('localScripts', '<script src="/public/user/signup.js"></script>') %>
+<% block('localScripts', '<script src="/public/user/signup.js"></script>') -%>
