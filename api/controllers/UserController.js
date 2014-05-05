@@ -16,33 +16,50 @@
  */
 
 var UserController = {
-    signup: function (req, res) {
-        if (req.method === "POST" && req.isAjax) {
-            console.log("mdr");
-            var username = req.param("username"),
-                password = req.param("password"),
-                firstName = req.param("firstName"),
-                lastName = req.param("lastName"),
-                email = req.param("email");
+    create: function (req, res) {
+        if (req.method === "POST") {
+            var email = req.param("email");
             User.findByEmail(email).done(function(err, usr) {
                 if (err) {
-                    res.send({error: "DB Error"}, 500);
+                    console.log(err);
+                    req.session.flash = {
+                        err: err
+                    };
+                    return res.redirect('/user/signup');
                 } else if (usr.length > 0) {
-                    res.send({error: "Email already used"}, 400);
-                } else {
-                    User.create({username: username, firstName: firstName, lastName: lastName, email: email, password: password}).done(function (error, user) {
-                        if (error) {
-                            res.send({ error: "DB Error" }, 500);
-                        } else {
-                            req.session.user = user;
-                            res.send(user);
+                    req.session.flash = {
+                        err: {
+                            error: "The provided email address is already registered."
                         }
+                    };
+                    return res.redirect('/user/signup');
+                } else {
+                    if ()
+                    User.create(req.params.all(), function userCreated (error, user) {
+                        if (error) {
+                            console.log(error);
+                            req.session.flash = {
+                                err: error
+                            };
+
+                            return res.redirect('/user/signup');
+                        }
+
+                        req.session.flash = {
+                            success: {
+                                message: "Your User Account was successfully created."
+                            }
+                        };
+                        res.json(user);
                     });
                 }
             });
-        } else {
-            res.view();
         }
+    },
+    signup: function (req, res) {
+        res.locals.flash = _.clone(req.session.flash);
+        res.view();
+        req.session.flash = {};
     },
     login: function (req, res) {
         res.view();

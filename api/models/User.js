@@ -10,6 +10,8 @@ module.exports = {
 
   adapter: 'neo4j',
 
+  schema: true,
+
   attributes: {
     firstName: {
       type: 'string',
