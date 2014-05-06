@@ -1,93 +1,49 @@
-$(function () {
-    $('.button-checkbox').each(function () {
-        // Settings
-        var $widget = $(this),
-            $button = $widget.find('button'),
-            $checkbox = $widget.find('input:checkbox'),
-            color = $button.data('color'),
-            settings = {
-                on: {
-                    icon: 'glyphicon glyphicon-check'
-                },
-                off: {
-                    icon: 'glyphicon glyphicon-unchecked'
-                }
-            };
+// create angular app
+var validationApp = angular.module('validationApp', ['ngRoute']);
 
-        // Event Handlers
-        $button.on('click', function () {
-            $checkbox.prop('checked', !$checkbox.is(':checked'));
-            $checkbox.triggerHandler('change');
-            updateDisplay();
+// create angular controller
+validationApp.controller('mainController', function($scope) {
+
+    // function to submit the form after all validation has occurred            
+    $scope.submitForm = function(isValid) {
+
+        // check to make sure the form is completely valid
+        if (isValid) { 
+            alert('our form is amazing');
+        }
+
+    };
+
+});
+
+validationApp.directive("passwordVerify", function() {
+   return {
+      require: "ngModel",
+      scope: {
+        passwordVerify: '='
+      },
+      link: function(scope, element, attrs, ctrl) {
+        scope.$watch(function() {
+            var combined;
+
+            if (scope.passwordVerify || ctrl.$viewValue) {
+               combined = scope.passwordVerify + '_' + ctrl.$viewValue; 
+            }                    
+            return combined;
+        }, function(value) {
+            if (value) {
+                ctrl.$parsers.unshift(function(viewValue) {
+                    var origin = scope.passwordVerify;
+                    if (origin !== viewValue) {
+                        ctrl.$setValidity("passwordVerify", false);
+                        return undefined;
+                    } else {
+                        ctrl.$setValidity("passwordVerify", true);
+                        return viewValue;
+                    }
+                });
+            }
         });
-        $checkbox.on('change', function () {
-            updateDisplay();
-        });
-
-        // Actions
-        function updateDisplay() {
-            var isChecked = $checkbox.is(':checked');
-
-            // Set the button's state
-            $button.data('state', (isChecked) ? "on" : "off");
-
-            // Set the button's icon
-            $button.find('.state-icon')
-                .removeClass()
-                .addClass('state-icon ' + settings[$button.data('state')].icon);
-
-            // Update the button's color
-            if (isChecked) {
-                $button
-                    .removeClass('btn-default')
-                    .addClass('btn-' + color + ' active');
-            }
-            else {
-                $button
-                    .removeClass('btn-' + color + ' active')
-                    .addClass('btn-default');
-            }
-        }
-
-        // Initialization
-        function init() {
-
-            updateDisplay();
-
-            // Inject the icon if applicable
-            if ($button.find('.state-icon').length == 0) {
-                $button.prepend('<i class="state-icon ' + settings[$button.data('state')].icon + '"></i> ');
-            }
-        }
-        init();
-    });
-
-    $('.form-signup').validate({
-        rules: {
-            firstName: {
-                required: true
-            },
-            lastName: {
-                required: true
-            },
-            username: {
-                required: true
-            },
-            email: {
-                required: true,
-                email: true
-            },
-            password: {
-                minlength: 6,
-                required: true
-            },
-            passwordConfirmation: {
-                minlength: 6,
-                equalTo: "#password"
-            }
-        },
-        success: function(element) {
-            element.addClass('valid');
-        }
-    });
+     }
+   };
 });

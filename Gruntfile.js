@@ -63,7 +63,9 @@ module.exports = function (grunt) {
 
     'linker/js/vendor/jquery-validate/jquery.validate.js',
 
-
+    'linker/js/vendor/angular/angular.js',
+    'linker/js/vendor/angular-route/angular-route.min.js',
+    
     // All of the rest of your app scripts imported here
     'linker/**/*.js'
   ];

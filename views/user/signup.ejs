@@ -1,6 +1,6 @@
-<div class="row">
+<div class="row" ng-app="validationApp" ng-controller="mainController">
     <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-        <form role="form" method="POST" action="/user/create" class="form-signup">
+        <form name="userForm" role="form" class="form-signup" ng-submit="submitForm(userForm.$valid)" novalidate >
             <h2>S'enregistrer</h2>
             <hr>
             <% if(flash && flash.err) { %>
@@ -12,50 +12,55 @@
             <% } %>
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-6">
-                    <div class="form-group">
-                        <input type="text" name="firstName" id="firstName" class="form-control input-lg" placeholder="Prénom" tabindex="1">
+                    <div class="form-group" ng-class="{ 'has-error' : userForm.firstName.$invalid && !userForm.firstName.$pristine }">
+                        <input type="text" name="firstName" ng-model="user.firstName" class="form-control input-lg" placeholder="Prénom" tabindex="1" required>
+                        <p ng-show="userForm.firstName.$invalid && !userForm.firstName.$pristine" class="help-block">Your firstname is required.</p>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-6">
-                    <div class="form-group">
-                        <input type="text" name="lastName" id="lastName" class="form-control input-lg" placeholder="Nom" tabindex="2">
+                    <div class="form-group" ng-class="{ 'has-error' : userForm.lastName.$invalid && !userForm.lastName.$pristine }">
+                        <input type="text" name="lastName" ng-model="user.lastName" class="form-control input-lg" placeholder="Nom" tabindex="2" required>
+                        <p ng-show="userForm.lastName.$invalid && !userForm.lastName.$pristine" class="help-block">Your lastname is required.</p>
                     </div>
                 </div>
             </div>
-            <div class="form-group">
-                <input type="text" name="username" id="username" class="form-control input-lg" placeholder="Nom d'Utilisateur" tabindex="3">
+            <div class="form-group" ng-class="{ 'has-error' : userForm.username.$invalid && !userForm.username.$pristine }">
+                <input type="text" name="username" ng-model="user.username" class="form-control input-lg" placeholder="Nom d'Utilisateur" tabindex="3" required>
+                <p ng-show="userForm.lastName.$invalid && !userForm.lastName.$pristine" class="help-block">A username is required.</p>
             </div>
-            <div class="form-group">
-                <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Adresse Email" tabindex="4">
+            <div class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">
+                <input type="email" name="email" ng-model="user.email" class="form-control input-lg" placeholder="Adresse Email" tabindex="4" required>
+                <p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">A username is required.</p>
             </div>
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-6">
-                    <div class="form-group">
-                        <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Mot de Passe" tabindex="5">
+                    <div class="form-group" ng-class="{ 'has-error' : userForm.password.$invalid && !userForm.password.$pristine }">
+                        <input type="password" name="password" ng-model="user.password" class="form-control input-lg" placeholder="Mot de Passe" tabindex="5" ng-minlength="7" required>
+                        <p ng-show="userForm.password.$error.minlength" class="help-block">Password is too short.</p>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-6">
-                    <div class="form-group">
-                        <input type="password" name="passwordConfirmation" id="passwordConfirmation" class="form-control input-lg" placeholder="Confirmation du Mot de Passe" tabindex="6">
+                    <div class="form-group" ng-class="{ 'has-error' : userForm.passwordConfirmation.$invalid && !userForm.passwordConfirmation.$pristine }">
+                        <input type="password" name="passwordConfirmation" ng-model="user.passwordConfirmation" class="form-control input-lg" placeholder="Confirmation du Mot de Passe" tabindex="6" required data-password-verify="user.password">
+                        <p ng-show="userForm.passwordConfirmation.$error.passwordVerify" class="help-block">Please enter the same password.</p>
                     </div>
+
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-4 col-sm-3 col-md-3">
-                    <span class="button-checkbox">
-                        <button type="button" class="btn" data-color="info" tabindex="7">J'accepte</button>
-                        <input type="checkbox" name="t_and_c" id="t_and_c" class="hidden" value="1">
+                    <span data-toggle="button-checkbox">
+                        <button type="button" ng-model="user.t_and_c"  class="btn" data-color="info" tabindex="7">J'accepte</button>
                     </span>
                 </div>
                 <div class="col-xs-8 col-sm-9 col-md-9">
-                    En cliquant sur  <strong class="label label-primary">J'accepte</strong>, vous vous engagez à respecter les <a href="#" data-toggle="modal" data-target="#t_and_c_m">conditions d'utilisations</a> de l'application web, y compris l'utilisation des cookies
+                    En cliquant sur <strong class="label label-primary">J'accepte</strong>, vous vous engagez à respecter les <a href="#" data-toggle="modal" data-target="#t_and_c_m">conditions d'utilisations</a> de l'application web, y compris l'utilisation des cookies
                 </div>
             </div>
-            
             <hr>
             <div class="row">
                 <div class="col-xs-12 col-md-12">
-                    <input type="submit" value="S'enregistrer" class="btn btn-primary btn-block btn-lg" tabindex="7">
+                    <button type="submit" class="btn btn-primary btn-block btn-lg" tabindex="7" ng-disabled="userForm.$invalid"> S'enregistrer </button>
                 </div>
             </div>
             <input type="hidden" name="_csrf" value="<%= _csrf %>" />
