@@ -1,16 +1,41 @@
+
 // create angular app
-var validationApp = angular.module('validationApp', ['ngRoute']);
+var validationApp = angular.module('validationApp', ['ngRoute','sails.io']);
+
+// See: angular-sails.io.js for sailsSocketFactory
+validationApp.factory('sailsSocket', function(sailsSocketFactory, $log) {
+
+  var sailsSocket = sailsSocketFactory({ reconnectionAttempts: 10 });
+
+  // Before connecting, you might want to first send a dummy request
+  // to the server url in order to retrieve cookies.
+  // (See FAQ at bottom of http://sailsjs.org/#!documentation/sockets)
+  //
+  // var deferred = $q.defer();
+  // $http.get(sailsSocket.options.url).success(function(data, status) {
+  // deferred.resolve(sailsSocket.connect());
+  // }).error(function(data, status) {
+  // deferred.reject({ data: data, status: status });
+  // });
+  // return deferred.promise;
+  //
+  // ...
+  //
+  // promise.then(function(sailsSocket) {
+  // sailsSocket.get('/foo', {}, function(res) { ... });
+  // });
+
+  $log.debug('Connecting to Sails.js...');
+  return sailsSocket.connect();
+});
 
 // create angular controller
-validationApp.controller('mainController', function($scope) {
+validationApp.controller('mainController', function($scope,sailsSocket) {
 
     // function to submit the form after all validation has occurred            
-    $scope.submitForm = function(isValid) {
-
-        // check to make sure the form is completely valid
-        if (isValid) { 
-            alert('our form is amazing');
-        }
+    $scope.submitForm = function() {
+            alert("lol");
+            sailsSocket.post("/user/create",$scope.user);
 
     };
 
