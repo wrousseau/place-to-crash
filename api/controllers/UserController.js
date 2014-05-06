@@ -29,7 +29,7 @@ var UserController = {
                 } else if (usr.length > 0) {
                     req.session.flash = {
                         err: {
-                            error: "The provided email address is already registered."
+                            error: "L'adresse email fournie est déjà enregistrée."
                         }
                     };
                     return res.redirect('/user/signup');
