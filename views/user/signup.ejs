@@ -1,15 +1,8 @@
 <div class="row" ng-app="validationApp" ng-controller="mainController">
-    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-        <form name="userForm" role="form" class="form-signup" ng-submit="submitForm(userForm.$valid)" novalidate >
-            <h2>S'enregistrer</h2>
-            <hr>
-            <% if(flash && flash.err) { %>
-                <ul class="alert alert-danger">
-                <% Object.keys(flash.err).forEach(function(error) { %>
-                    <li><%- JSON.stringify(flash.err[error]) %></li>
-                <% }) %>
-                </ul>
-            <% } %>
+    <div ng-controller="Controller" class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+        <h2>S'enregistrer</h2>
+        <hr>
+        <form novalidate class="form-signup">
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-6">
                     <div class="form-group" ng-class="{ 'has-error' : userForm.firstName.$invalid && !userForm.firstName.$pristine }">

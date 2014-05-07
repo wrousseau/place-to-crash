@@ -27,6 +27,9 @@
     "angular": {
       "js/vendor": "**/angular.min.js"
     },
+    "angular-resource": {
+      "js/vendor": "**/angular-resource.min.js"
+    },
     "angular-route": {
       "js/vendor": "**/angular-route.min.js"
     }
