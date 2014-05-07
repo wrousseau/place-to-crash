@@ -1,4 +1,20 @@
-angular.module('sails.io', ['ngRoute'])
+'use strict';
+
+/*
+* Remixed from:
+*
+* angular-socket-io v0.3.0
+* (c) 2014 Brian Ford http://briantford.com
+* License: MIT
+*
+* ...and...
+*
+* sails.io.js v0.9.8
+* (c) 2012-2014 Mike McNeil http://sailsjs.org/
+* License: MIT
+*/
+
+angular.module('sails.io', [])
   .factory('sailsSocketFactory', function($rootScope, $http, $timeout, $location, $log) {
 
     var optionDefaults = {
@@ -212,6 +228,3 @@ angular.module('sails.io', ['ngRoute'])
       return sailsSocket;
     };
   });
-
-
-

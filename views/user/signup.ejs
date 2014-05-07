@@ -1,4 +1,4 @@
-<div class="row" ng-app="validationApp" ng-controller="mainController">
+<div class="row" ng-app="app" ng-controller="mainController">
     <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
         <form name="userForm" role="form" class="form-signup" ng-submit="submitForm(userForm.$valid)" novalidate >
             <h2>S'enregistrer</h2>
@@ -60,7 +60,7 @@
             <hr>
             <div class="row">
                 <div class="col-xs-12 col-md-12">
-                    <button type="submit" class="btn btn-primary btn-block btn-lg" tabindex="7" ng-disabled="userForm.$invalid"> S'enregistrer </button>
+                    <button type="submit" class="btn btn-primary btn-block btn-lg" tabindex="7" > S'enregistrer </button>
                 </div>
             </div>
             <input type="hidden" name="_csrf" value="<%= _csrf %>" />
