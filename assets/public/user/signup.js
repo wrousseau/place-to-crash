@@ -1,79 +1,17 @@
+function SignupController($scope) {
+$scope.master = {};
 
-// create angular app
-var validationApp = angular.module('validationApp', ['ngRoute','sails.io']);
+$scope.update = function(user) {
+  $scope.master = angular.copy(user);
+};
 
-// See: angular-sails.io.js for sailsSocketFactory
-validationApp.factory('sailsSocket', function(sailsSocketFactory, $log) {
+$scope.reset = function() {
+  $scope.user = angular.copy($scope.master);
+};
 
-  var sailsSocket = sailsSocketFactory({ reconnectionAttempts: 10 });
+$scope.reset();
+}
 
-  // Before connecting, you might want to first send a dummy request
-  // to the server url in order to retrieve cookies.
-  // (See FAQ at bottom of http://sailsjs.org/#!documentation/sockets)
-  //
-  // var deferred = $q.defer();
-  // $http.get(sailsSocket.options.url).success(function(data, status) {
-  // deferred.resolve(sailsSocket.connect());
-  // }).error(function(data, status) {
-  // deferred.reject({ data: data, status: status });
-  // });
-  // return deferred.promise;
-  //
-  // ...
-  //
-  // promise.then(function(sailsSocket) {
-  // sailsSocket.get('/foo', {}, function(res) { ... });
-  // });
-
-  $log.debug('Connecting to Sails.js...');
-  return sailsSocket.connect();
-});
-
-// create angular controller
-validationApp.controller('mainController', function($scope,sailsSocket) {
-
-    // function to submit the form after all validation has occurred            
-    $scope.submitForm = function() {
-            alert("lol");
-            sailsSocket.post("/user/create",$scope.user);
-
-    };
-
-});
-
-validationApp.directive("passwordVerify", function() {
-   return {
-      require: "ngModel",
-      scope: {
-        passwordVerify: '='
-      },
-      link: function(scope, element, attrs, ctrl) {
-        scope.$watch(function() {
-            var combined;
-
-            if (scope.passwordVerify || ctrl.$viewValue) {
-               combined = scope.passwordVerify + '_' + ctrl.$viewValue; 
-            }                    
-            return combined;
-        }, function(value) {
-            if (value) {
-                ctrl.$parsers.unshift(function(viewValue) {
-                    var origin = scope.passwordVerify;
-                    if (origin !== viewValue) {
-                        ctrl.$setValidity("passwordVerify", false);
-                        return undefined;
-                    } else {
-                        ctrl.$setValidity("passwordVerify", true);
-                        return viewValue;
-                    }
-                });
-            }
-        });
-     }
-   };
-});
-
-// JQuery Styling
 $(function () {
     $('.button-checkbox').each(function () {
         // Settings
@@ -137,4 +75,5 @@ $(function () {
         }
         init();
     });
+
 });

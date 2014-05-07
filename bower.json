@@ -9,26 +9,21 @@
   "dependencies": {
     "angular": "1.2.*",
     "angular-route": "1.2.*",
+    "angular-socket-io": "~0.3.0",
+    "socket.io-client": "~0.9.16",
     "jquery": "1.11.1",
-    "jquery-validate": "~1.12.0",
     "bootstrap": "~3.1.1"
   },
   "exportsOverride": {
     "jquery": {
       "js/vendor": "**/jquery.min.js"
     },
-    "jquery-validate": {
-      "../public/js/vendor": "**/jquery.validate.js"
-    },
     "bootstrap": {
       "js/vendor": "dist/js/bootstrap.min.js",
       "styles/vendor": "dist/css/bootstrap-theme.min.css"
     },
     "angular": {
-      "js/vendor": "**/angular.min.js"
-    },
-    "angular-resource": {
-      "js/vendor": "**/angular-resource.min.js"
+      "js/vendor": "**/angular.js"
     },
     "angular-route": {
       "js/vendor": "**/angular-route.min.js"

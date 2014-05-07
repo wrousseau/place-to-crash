@@ -61,10 +61,10 @@ module.exports = function (grunt) {
     // *->    put other dependencies here   <-*
     'linker/js/vendor/jquery/jquery.min.js',
 
-    'linker/js/vendor/angular/angular.min.js',
+    'linker/js/vendor/angular/angular.js',
 
     'linker/js/vendor/angular-route/angular-route.min.js',
-    
+
     // All of the rest of your app scripts imported here
     'linker/**/*.js'
   ];

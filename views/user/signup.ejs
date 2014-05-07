@@ -1,87 +1,105 @@
-<div class="row" ng-app="validationApp" ng-controller="mainController">
-    <div ng-controller="Controller" class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-        <h2>S'enregistrer</h2>
-        <hr>
-        <form novalidate class="form-signup">
-            <div class="row">
-                <div class="col-xs-12 col-sm-6 col-md-6">
-                    <div class="form-group" ng-class="{ 'has-error' : userForm.firstName.$invalid && !userForm.firstName.$pristine }">
-                        <input type="text" name="firstName" ng-model="user.firstName" class="form-control input-lg" placeholder="Prénom" tabindex="1" required>
-                        <p ng-show="userForm.firstName.$invalid && !userForm.firstName.$pristine" class="help-block">Your firstname is required.</p>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-6">
-                    <div class="form-group" ng-class="{ 'has-error' : userForm.lastName.$invalid && !userForm.lastName.$pristine }">
-                        <input type="text" name="lastName" ng-model="user.lastName" class="form-control input-lg" placeholder="Nom" tabindex="2" required>
-                        <p ng-show="userForm.lastName.$invalid && !userForm.lastName.$pristine" class="help-block">Your lastname is required.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group" ng-class="{ 'has-error' : userForm.username.$invalid && !userForm.username.$pristine }">
-                <input type="text" name="username" ng-model="user.username" class="form-control input-lg" placeholder="Nom d'Utilisateur" tabindex="3" required>
-                <p ng-show="userForm.lastName.$invalid && !userForm.lastName.$pristine" class="help-block">A username is required.</p>
-            </div>
-            <div class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">
-                <input type="email" name="email" ng-model="user.email" class="form-control input-lg" placeholder="Adresse Email" tabindex="4" required>
-                <p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">A Email is required.</p>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 col-sm-6 col-md-6">
-                    <div class="form-group" ng-class="{ 'has-error' : userForm.password.$invalid && !userForm.password.$pristine }">
-                        <input type="password" name="password" ng-model="user.password" class="form-control input-lg" placeholder="Mot de Passe" tabindex="5" ng-minlength="7" required>
-                        <p ng-show="userForm.password.$error.minlength" class="help-block">Password is too short.</p>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-6">
-                    <div class="form-group" ng-class="{ 'has-error' : userForm.passwordConfirmation.$invalid && !userForm.passwordConfirmation.$pristine }">
-                        <input type="password" name="passwordConfirmation" ng-model="user.passwordConfirmation" class="form-control input-lg" placeholder="Confirmation du Mot de Passe" tabindex="6" required data-password-verify="user.password">
-                        <p ng-show="userForm.passwordConfirmation.$error.passwordVerify" class="help-block">Please enter the same password.</p>
-                    </div>
+<% block('localStyles', '<link rel="stylesheet" href="/public/user/signup.css">') -%>
 
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-4 col-sm-3 col-md-3">
-                    <span data-toggle="button-checkbox">
-                        <button type="button" ng-model="user.t_and_c"  class="btn" data-color="info" tabindex="7">J'accepte</button>
-                    </span>
-                </div>
-                <div class="col-xs-8 col-sm-9 col-md-9">
-                    En cliquant sur <strong class="label label-primary">J'accepte</strong>, vous vous engagez à respecter les <a href="#" data-toggle="modal" data-target="#t_and_c_m">conditions d'utilisations</a> de l'application web, y compris l'utilisation des cookies
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-xs-12 col-md-12">
-                    <button type="submit" class="btn btn-primary btn-block btn-lg" tabindex="7" ng-disabled="userForm.$invalid"> S'enregistrer </button>
-                </div>
-            </div>
-            <input type="hidden" name="_csrf" value="<%= _csrf %>" />
-        </form>
-    </div>
+<div class="row" ng-controller="SignupController">
+	<div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+		<form novalidate name="signupForm" class="simple-form">
+			<h2>S'enregistrer</h2>
+			<hr>
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group" ng-class="{'has-error': signupForm.firstName.$invalid && signupForm.firstName.$dirty, 'has-success': !signupForm.firstName.$invalid, 'has-feedback': signupForm.firstName.$dirty}">
+						<input type="text" name="firstName" id="firstName" ng-model="user.firstName" class="form-control input-lg" placeholder="Prénom" tabindex="1" required>
+						<span class="glyphicon glyphicon-remove form-control-feedback" ng-show="signupForm.firstName.$error.required && signupForm.firstName.$dirty"></span>
+						<span class="glyphicon glyphicon-ok form-control-feedback" ng-show="!signupForm.firstName.$error.required && signupForm.firstName.$dirty"></span>
+						<label class="control-label" for="firstName" ng-show="signupForm.firstName.$error.required && signupForm.firstName.$dirty">Prénom Requis</label>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group" ng-class="{'has-error': signupForm.lastName.$invalid && signupForm.firstName.$dirty, 'has-success': !signupForm.lastName.$invalid, 'has-feedback': signupForm.lastName.$dirty}">
+						<input type="text" name="lastName" id="lastName" ng-model="user.lastName" class="form-control input-lg" placeholder="Nom" tabindex="1" required>
+						<span class="glyphicon glyphicon-remove form-control-feedback" ng-show="signupForm.lastName.$error.required && signupForm.lastName.$dirty"></span>
+						<span class="glyphicon glyphicon-ok form-control-feedback" ng-show="!signupForm.lastName.$error.required && signupForm.lastName.$dirty"></span>
+						<label class="control-label" for="lastName" ng-show="signupForm.lastName.$error.required && signupForm.lastName.$dirty">Nom Requis</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group" ng-class="{'has-error': signupForm.username.$invalid && signupForm.username.$dirty, 'has-success': !signupForm.username.$invalid, 'has-feedback': signupForm.username.$dirty}">
+				<input type="text" name="username" id="username" ng-model="user.username" class="form-control input-lg" placeholder="Nom d'Utilisateur" tabindex="1" required>
+				<span class="glyphicon glyphicon-remove form-control-feedback" ng-show="signupForm.userName.$error.required && signupForm.username.$dirty"></span>
+				<span class="glyphicon glyphicon-ok form-control-feedback" ng-show="!signupForm.username.$error.required && signupForm.username.$dirty"></span>
+				<label class="control-label" for="username" ng-show="signupForm.username.$error.required && signupForm.username.$dirty">Nom d'Utilisateur Requis</label>
+			</div>
+			<div class="form-group" ng-class="{'has-error': signupForm.email.$invalid && signupForm.email.$dirty, 'has-success': !signupForm.email.$invalid, 'has-feedback': signupForm.email.$dirty}">
+				<input type="email" name="email" id="email" ng-model="user.email" class="form-control input-lg" placeholder="Email" tabindex="1" required>
+				<span class="glyphicon glyphicon-remove form-control-feedback" ng-show="signupForm.email.$error.required && signupForm.email.$dirty"></span>
+				<span class="glyphicon glyphicon-ok form-control-feedback" ng-show="!signupForm.email.$error.required && signupForm.email.$dirty"></span>
+				<label class="control-label" for="email" ng-show="signupForm.email.$error.required && signupForm.email.$dirty">Email Requis</label>
+				<label class="control-label" for="email" ng-show="signupForm.email.$error.email && signupForm.email.$dirty">Format Email Incorrect</label>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-6">
+				<div class="form-group" ng-class="{'has-error': signupForm.password.$invalid && signupForm.password.$dirty, 'has-success': !signupForm.password.$invalid, 'has-feedback': signupForm.password.$dirty}">
+						<input type="text" name="password" id="password" ng-model="user.password" class="form-control input-lg" placeholder="Mot de Passe" tabindex="1" required>
+						<span class="glyphicon glyphicon-remove form-control-feedback" ng-show="signupForm.password.$error.required && signupForm.password.$dirty"></span>
+						<span class="glyphicon glyphicon-ok form-control-feedback" ng-show="!signupForm.password.$error.required && signupForm.password.$dirty"></span>
+						<label class="control-label" for="password" ng-show="signupForm.password.$error.required && signupForm.password.$dirty">Mot de Passe requis</label>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group" ng-class="{'has-error': signupForm.passwordConfirmation.$invalid && signupForm.passwordConfirmation.$dirty, 'has-success': !signupForm.passwordConfirmation.$invalid, 'has-feedback': signupForm.passwordConfirmation.$dirty}">
+						<input type="text" name="passwordConfirmation" id="passwordConfirmation" ng-model="user.passwordConfirmation" class="form-control input-lg" placeholder="Confirmer Mot de Passe" tabindex="1" required>
+						<span class="glyphicon glyphicon-remove form-control-feedback" ng-show="signupForm.passwordConfirmation.$error.required && signupForm.passwordConfirmation.$dirty"></span>
+						<span class="glyphicon glyphicon-ok form-control-feedback" ng-show="!signupForm.passwordConfirmation.$error.required && signupForm.passwordConfirmation.$dirty"></span>
+						<label class="control-label" for="passwordConfirmation" ng-show="signupForm.passwordConfirmation.$error.required && signupForm.passwordConfirmation.$dirty">Confirmation du Mot de Passe Requise</label>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-4 col-sm-3 col-md-3">
+					<span class="button-checkbox">
+						<button type="button" class="btn" data-color="info" tabindex="7">J'accepte</button>
+						<input type="checkbox" name="t_and_c" id="t_and_c" class="hidden" value="1">
+					</span>
+				</div>
+				<div class="col-xs-8 col-sm-9 col-md-9">
+					En cliquant sur  <strong class="label label-primary">J'accepte</strong>, vous vous engagez à respecter les <a href="#" data-toggle="modal" data-target="#t_and_c_m">conditions d'utilisations</a> de l'application web, y compris l'utilisation des cookies
+				</div>
+			</div>
+
+			<hr>
+			<div class="row">
+				<div class="col-xs-12 col-md-12">
+					<input type="submit" value="S'enregistrer" class="btn btn-primary btn-block btn-lg" tabindex="7">
+				</div>
+			</div>
+			<input type="hidden" name="_csrf" value="<%= _csrf %>" />
+		</form>
+	</div>
+	<pre>form = {{user | json}}</pre>
+	<pre>master = {{master | json}}</pre>
 </div>
 <!-- Modal -->
 <div class="modal fade" id="t_and_c_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" id="myModalLabel">Conditions d'Utilisation</h4>
-            </div>
-            <div class="modal-body">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">J'accepte</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h4 class="modal-title" id="myModalLabel">Conditions d'Utilisation</h4>
+			</div>
+			<div class="modal-body">
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">J'accepte</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
 <% block('localScripts', '<script src="/public/user/signup.js"></script>') -%>
