@@ -62,32 +62,85 @@ $(function () {
         init();
     });
 
-    $('.form-signup').validate({
-        rules: {
-            firstName: {
-                required: true
+    
+    $('#signupForm')
+        .bootstrapValidator({
+            message: 'Ce champs est invalide',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
             },
-            lastName: {
-                required: true
+            submitHandler: function(validator, form, submitButton) {
+                alert("test");
             },
-            username: {
-                required: true
-            },
-            email: {
-                required: true,
-                email: true
-            },
-            password: {
-                minlength: 6,
-                required: true
-            },
-            passwordConfirmation: {
-                minlength: 6,
-                equalTo: "#password"
+            fields: {
+                firstName: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Le prénom est requis'
+                        }
+                    }
+                },
+                lastName: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Le nom de famille est requis'
+                        }
+                    }
+                },
+                username: {
+                    validators: {
+                        notEmpty: {
+                            message: "Le nom d'utilisateur est requis"
+                        }
+                    }
+                },
+                email: {
+                    validators: {
+                        notEmpty: {
+                            message: "L'email est requis"
+                        },
+                        emailAddress: {
+                            message: "L'email entré n'est pas un email valide"
+                        }
+                    }
+                },
+                password: {
+                    validators: {
+                        notEmpty: {
+                            message: "Le mot de passe est requis"
+                        },
+                        identical: {
+                            field: 'passwordConfirmation',
+                            message: "Les deux mots de passe ne correspondent pas"
+                        },
+                        different: {
+                            field: 'username',
+                            message: "Le mot de passe ne peut être identique au nom d'utilisateur"
+                        }
+                    }
+                },
+                passwordConfirmation: {
+                    validators: {
+                        notEmpty: {
+                            message: "Le mot de passe est requis"
+                        },
+                        identical: {
+                            field: 'password',
+                            message: "Les deux mots de passe ne correspondent pas"
+                        },
+                            different: {
+                            field: 'username',
+                            message: "Le mot de passe ne peut être identique au nom d'utilisateur"
+                        }
+                    }
+                }
             }
-        },
-        success: function(element) {
-            element.addClass('valid');
-        }
-    });
+        })
+        .find('button[data-toggle]')
+            .on('click', function() {
+                var $target = $($(this).attr('data-toggle'));
+                alert("test");
+        });
 });

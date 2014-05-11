@@ -8,19 +8,20 @@
   "main": "app.js",
   "dependencies": {
     "jquery": "1.11.1",
-    "jquery-validate": "~1.12.0",
-    "bootstrap": "~3.1.1"
+    "bootstrap": "~3.1.1",
+    "bootstrapValidator": "0.4.4",
+    "bootswatch": "~3.1.1"
   },
   "exportsOverride": {
     "jquery": {
       "js/vendor": "**/jquery.min.js"
     },
-    "jquery-validate": {
-      "js/vendor": "**/jquery.validate.js"
+    "bootstrapValidator": {
+      "js/vendor": "dist/js/bootstrapValidator.js",
+      "styles/vendor": "dist/css/bootstrapValidator.css"
     },
     "bootstrap": {
       "js/vendor": "dist/js/bootstrap.min.js",
-      "styles/vendor": "dist/css/bootstrap-theme.min.css"
     }
   }
 }

@@ -31,6 +31,7 @@ module.exports = function (grunt) {
   var cssFilesToInject = [
     'linker/styles/vendor/bootstrap/bootstrap.min.css',
     'linker/styles/vendor/bootstrap/bootstrap-theme.min.css',
+    'linker/styles/vendor/bootstrapValidator/bootstrapValidator.css',
     'linker/**/*.css'
   ];
 
@@ -61,8 +62,9 @@ module.exports = function (grunt) {
     // *->    put other dependencies here   <-*
     'linker/js/vendor/jquery/jquery.min.js',
 
-    'linker/js/vendor/jquery-validate/jquery.validate.js',
+    'linker/js/vendor/bootstrap/bootstrap.min.js',
 
+    'linker/js/vendor/bootstrapValidator/bootstrapValidator.js',
 
     // All of the rest of your app scripts imported here
     'linker/**/*.js'
