@@ -3,14 +3,13 @@
   "version": "0.0.1",
   "authors": [
     "Woody Rousseau <woody.rousseau@ensta-paristech.fr>",
-    "Sammy Teillet <sammy.teillet@gmail.com"
+    "Sammy Teillet <sammy.teillet@gmail.com>"
   ],
   "main": "app.js",
   "dependencies": {
     "jquery": "1.11.1",
     "bootstrap": "~3.1.1",
-    "bootstrapValidator": "0.4.4",
-    "bootswatch": "~3.1.1"
+    "bootstrapValidator": "0.4.4"
   },
   "exportsOverride": {
     "jquery": {
@@ -21,7 +20,7 @@
       "styles/vendor": "dist/css/bootstrapValidator.css"
     },
     "bootstrap": {
-      "js/vendor": "dist/js/bootstrap.min.js",
+      "js/vendor": "dist/js/bootstrap.min.js"
     }
   }
 }

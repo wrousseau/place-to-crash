@@ -111,10 +111,6 @@ $(function () {
                         notEmpty: {
                             message: "Le mot de passe est requis"
                         },
-                        identical: {
-                            field: 'passwordConfirmation',
-                            message: "Les deux mots de passe ne correspondent pas"
-                        },
                         different: {
                             field: 'username',
                             message: "Le mot de passe ne peut être identique au nom d'utilisateur"
@@ -129,10 +125,6 @@ $(function () {
                         identical: {
                             field: 'password',
                             message: "Les deux mots de passe ne correspondent pas"
-                        },
-                            different: {
-                            field: 'username',
-                            message: "Le mot de passe ne peut être identique au nom d'utilisateur"
                         }
                     }
                 }
