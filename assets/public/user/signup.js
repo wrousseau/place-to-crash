@@ -149,7 +149,7 @@ $(function () {
                             var found = false;
                             $.get("find", function(data) {
                                 $.each(data, function (index, value) {
-                                    if (value.n.data.email.toLowerCase() === input.toLowerCase())
+                                    if (value.n.data.email === input.toLowerCase())
                                         found = true;
                                 });
                             });
