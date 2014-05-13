@@ -108,14 +108,14 @@ $(function () {
                     },
                     callback: {
                         message: "Le nom d'utilisateur est déjà utilisé",
-                        callback: function(input, validator) {
+                        callback: function(input) {
                             $.ajaxSetup({
                                 async: false
                             });
                             var found = false;
-                            $.get("user/find", function(data) {
+                            $.get("find", function(data) {
                                 $.each(data, function (index, value) {
-                                    if (value.n.data.username === input)
+                                    if (value.n.data.username.toLowerCase() === input.toLowerCase())
                                         found = true;
                                 });
                             });
@@ -142,14 +142,14 @@ $(function () {
                     },
                     callback: {
                         message: "L'email entré est déjà utilisé",
-                        callback: function(input, validator) {
+                        callback: function(input) {
                             $.ajaxSetup({
                                 async: false
                             });
                             var found = false;
-                            $.get("user/find", function(data) {
+                            $.get("find", function(data) {
                                 $.each(data, function (index, value) {
-                                    if (value.n.data.email === input)
+                                    if (value.n.data.email.toLowerCase() === input.toLowerCase())
                                         found = true;
                                 });
                             });
