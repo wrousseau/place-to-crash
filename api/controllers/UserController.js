@@ -53,6 +53,8 @@ var UserController = {
                 res.json(user);
                 req.session.flash = {};
             });
+        } else {
+            return res.redirect('/user/signup');
         }
     },
     signup: function (req, res) {

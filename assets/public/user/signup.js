@@ -126,7 +126,7 @@ $(function () {
                             var found = false;
                             $.get("find", function(data) {
                                 $.each(data, function (index, value) {
-                                    if (value.data.username.toLowerCase() === input.toLowerCase())
+                                    if (value.username.toLowerCase() === input.toLowerCase())
                                         found = true;
                                 });
                             });
@@ -156,7 +156,7 @@ $(function () {
                             var found = false;
                             $.get("find", function(data) {
                                 $.each(data, function (index, value) {
-                                    if (value.data.email === input.toLowerCase())
+                                    if (value.email === input.toLowerCase())
                                         found = true;
                                 });
                             });
