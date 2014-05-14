@@ -18,27 +18,6 @@
 var UserController = {
     create: function (req, res) {
         if (req.method === "POST") {
-            var redirect = false;
-            var email = req.param("email").toLowerCase();            
-            User.find()
-            .where({ or: [{email: email}, {username: {"~=":req.param("username")}}]})
-            .done(function(err, usr) {
-                if (err) {
-                    console.log(err);
-                    req.session.flash = {
-                        err: err
-                    };
-                    res.redirect('/user/signup');
-                } else if (usr.length > 0) {
-                    req.session.flash = {
-                        err: {
-                            error: "L'adresse email ou le nom d'utilisateur fournis sont déjà utilisés."
-                        }
-                    };
-                    res.redirect('/user/signup');
-                }
-            });
-
             User.create(req.params.all(), function userCreated (error, user) {
                 if (error) {
                     console.log(error);
