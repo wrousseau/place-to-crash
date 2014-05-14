@@ -42,6 +42,10 @@ module.exports.routes = {
   '/login' : {
     controller: 'user',
     action: 'login'
+  },
+  '/userslist' : {
+    controller: 'user',
+    action: 'login'
   }
 
   /*

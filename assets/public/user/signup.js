@@ -108,7 +108,6 @@ $(function () {
             username: {
                 trigger: 'blur',
                 validators: {
-                    trigger: 'blur',
                     notEmpty: {
                         message: "Le nom d'utilisateur est requis"
                     },
