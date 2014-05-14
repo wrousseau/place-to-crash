@@ -16,7 +16,7 @@
  */
 
 var UserController = {
-    create: function (req, res) {
+    create: function (req, res, next) {
         if (req.method === "POST") {
             User.create(req.params.all(), function userCreated (error, user) {
                 if (error) {
@@ -28,13 +28,23 @@ var UserController = {
                     return res.redirect('/user/signup');
                 }
                     
-                user = user["0"];
-                res.json(user);
-                req.session.flash = {};
+                res.redirect('/user/show/'+user["0"].id)
             });
         } else {
             return res.redirect('/user/signup');
         }
+    },
+    show: function (req, res, next) {
+        User.findOne(req.params['id'], function foundUser (err, user) {
+            if (err) return next(err);
+            if (!user) {
+                console.log("none found...");
+                return next();
+            }
+            res.view({
+                user: user
+            });
+        });
     },
     signup: function (req, res) {
         res.view();
