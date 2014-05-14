@@ -1,4 +1,8 @@
 $(function () {
+    /**
+     * jQuery code for displaying the Acceptance button 
+     * and updating the associated checkbox
+     */
     $('.button-checkbox').each(function () {
         // Settings
         var $widget = $(this),
@@ -65,7 +69,10 @@ $(function () {
         }
         init();
     });
-
+    
+    /**
+     * Client Side Validation (bootstrapValidator)
+     */
     $('#signupForm').bootstrapValidator({
         message: 'Ce champs est invalide',
         feedbackIcons: {
