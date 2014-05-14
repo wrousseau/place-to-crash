@@ -103,6 +103,11 @@ $(function () {
                     notEmpty: {
                         message: "Le nom d'utilisateur est requis"
                     },
+                    stringLength: {
+                        min: 5,
+                        max: 30,
+                        message: "Le nom d'utilisateur doit comprendre entre 5 et 30 caractères"
+                    },
                     callback: {
                         message: "Le nom d'utilisateur est déjà utilisé",
                         callback: function(input) {
@@ -122,12 +127,7 @@ $(function () {
                                 async: true
                             });
                             return !found;
-                        }
-                    },
-                    stringLength: {
-                        min: 5,
-                        max: 30,
-                        message: "Le nom d'utilisateur doit comprendre entre 5 et 30 caractères"
+                        }                    
                     }
                 }
             },
