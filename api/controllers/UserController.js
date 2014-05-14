@@ -16,30 +16,8 @@
  */
 
 var UserController = {
-    create: function (req, res) {
+    create: function (req, res, next) {
         if (req.method === "POST") {
-            console.log("creating");
-            var email = req.param("email").toLowerCase();
-            User.find()
-            .where({ or: [{email: email}, {username: {"~=":req.param("username")}}]})
-            .done(function(err, usr) {
-                if (err) {
-                    console.log(err);
-                    req.session.flash = {
-                        err: err
-                    };
-                    return res.redirect('/user/signup');
-                } else if (usr.length > 0) {
-                    console.log("already present !");
-                    req.session.flash = {
-                        err: {
-                            error: "L'adresse email ou le nom d'utilisateur fournis sont déjà utilisés."
-                        }
-                    };
-                    return res.redirect('/user/signup');
-                }
-            });
-
             User.create(req.params.all(), function userCreated (error, user) {
                 if (error) {
                     console.log(error);
@@ -49,18 +27,27 @@ var UserController = {
 
                     return res.redirect('/user/signup');
                 }
-
-                res.json(user);
-                req.session.flash = {};
+                    
+                res.redirect('/user/show/'+user["0"].id)
             });
         } else {
             return res.redirect('/user/signup');
         }
     },
+    show: function (req, res, next) {
+        User.findOne(req.params['id'], function foundUser (err, user) {
+            if (err) return next(err);
+            if (!user) {
+                console.log("none found...");
+                return next();
+            }
+            res.view({
+                user: user
+            });
+        });
+    },
     signup: function (req, res) {
-        res.locals.flash = _.clone(req.session.flash);
         res.view();
-        req.session.flash = {};
     },
     login: function (req, res) {
         res.view();
