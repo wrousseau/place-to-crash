@@ -13,7 +13,7 @@
   },
   "exportsOverride": {
     "jquery": {
-      "js/vendor": "**/jquery.min.js"
+      "js/vendor": "dist/jquery.js"
     },
     "bootstrapValidator": {
       "js/vendor": "dist/js/bootstrapValidator.js",
