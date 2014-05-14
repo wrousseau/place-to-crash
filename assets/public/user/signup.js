@@ -99,7 +99,9 @@ $(function () {
                 }
             },
             username: {
+                trigger: 'blur',
                 validators: {
+                    trigger: 'blur',
                     notEmpty: {
                         message: "Le nom d'utilisateur est requis"
                     },
@@ -111,8 +113,6 @@ $(function () {
                     callback: {
                         message: "Le nom d'utilisateur est déjà utilisé",
                         callback: function(input) {
-                            if (input.length < 5)
-                                return true;
                             $.ajaxSetup({
                                 async: false
                             });
@@ -132,6 +132,7 @@ $(function () {
                 }
             },
             email: {
+                trigger: 'blur',
                 validators: {
                     notEmpty: {
                         message: "L'email est requis"
@@ -142,9 +143,6 @@ $(function () {
                     callback: {
                         message: "L'email entré est déjà utilisé",
                         callback: function(input) {
-                            var emailRegExp = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                            if (!emailRegExp.test(input))
-                                return true;
                             $.ajaxSetup({
                                 async: false
                             });
