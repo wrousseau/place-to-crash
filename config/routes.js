@@ -35,40 +35,33 @@ module.exports.routes = {
   '/': {
     view: 'home/index'
   },
-  '/signup': {
-    controller: 'user',
-    action: 'signup'
-  },
-  '/login' : {
-    controller: 'user',
-    action: 'login'
-  }
 
   /*
   // But what if you want your home page to display
   // a signup form located at `views/user/signup.ejs`?
   '/': {
     view: 'user/signup'
-  }
+  }*/
 
-
+  /*
   // Let's say you're building an email client, like Gmail
   // You might want your home route to serve an interface using custom logic.
   // In this scenario, you have a custom controller `MessageController`
   // with an `inbox` action.
-  '/': 'MessageController.inbox'
+  '/': 'MessageController.inbox'*/
 
 
+  /*
   // Alternatively, you can use the more verbose syntax:
   '/': {
     controller: 'MessageController',
     action: 'inbox'
-  }
+  }*/
 
-
+  /*
   // If you decided to call your action `index` instead of `inbox`,
   // since the `index` action is the default, you can shortcut even further to:
-  '/': 'MessageController'
+  '/': 'MessageController'*/
 
 
   // Up until now, we haven't specified a specific HTTP method/verb
@@ -83,11 +76,9 @@ module.exports.routes = {
   //			<input name="password" type="password"/>
   //			<input type="submit"/>
   //		</form>
-
-  // You would want to define the following route to handle your form:
   'post /signup': 'UserController.signup'
 
-
+  /*
   // What about the ever-popular "vanity URLs" aka URL slugs?
   // (you might remember doing this with `mod_rewrite` in Apache)
   //
@@ -98,9 +89,7 @@ module.exports.routes = {
   // You'll still want to allow requests through to the static assets,
   // so we need to set up this route to ignore URLs that have a trailing ".":
   // (e.g. your javascript, CSS, and image files)
-  'get /*(^.*)': 'UserController.profile'
-
-  */
+  'get /*(^.*)': 'UserController.profile'*/
 };
 
 

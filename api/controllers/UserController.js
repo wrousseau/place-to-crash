@@ -18,8 +18,8 @@
 var UserController = {
     create: function (req, res) {
         if (req.method === "POST") {
-            console.log("creating");
-            var email = req.param("email").toLowerCase();
+            var redirect = false;
+            var email = req.param("email").toLowerCase();            
             User.find()
             .where({ or: [{email: email}, {username: {"~=":req.param("username")}}]})
             .done(function(err, usr) {
@@ -28,15 +28,14 @@ var UserController = {
                     req.session.flash = {
                         err: err
                     };
-                    return res.redirect('/user/signup');
+                    res.redirect('/user/signup');
                 } else if (usr.length > 0) {
-                    console.log("already present !");
                     req.session.flash = {
                         err: {
                             error: "L'adresse email ou le nom d'utilisateur fournis sont déjà utilisés."
                         }
                     };
-                    return res.redirect('/user/signup');
+                    res.redirect('/user/signup');
                 }
             });
 
@@ -49,7 +48,8 @@ var UserController = {
 
                     return res.redirect('/user/signup');
                 }
-
+                    
+                user = user["0"];
                 res.json(user);
                 req.session.flash = {};
             });
@@ -58,9 +58,7 @@ var UserController = {
         }
     },
     signup: function (req, res) {
-        res.locals.flash = _.clone(req.session.flash);
         res.view();
-        req.session.flash = {};
     },
     login: function (req, res) {
         res.view();

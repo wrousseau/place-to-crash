@@ -72,7 +72,7 @@ $(function () {
     
     /**
      * Client Side Validation (bootstrapValidator)
-     */
+     
     $('#signupForm').bootstrapValidator({
         message: 'Ce champs est invalide',
         feedbackIcons: {
@@ -191,5 +191,5 @@ $(function () {
                 }
             },
         }
-    });
+    });*/
 });

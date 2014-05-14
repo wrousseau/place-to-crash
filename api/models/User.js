@@ -52,6 +52,11 @@ module.exports = {
   			next();
   		});
   	});
+  },
+
+  afterCreate: function (newlyInsertedRecord, next) {
+    console.log(newlyInsertedRecord);
+    next();
   }
 
 };
