@@ -15,16 +15,15 @@ module.exports = {
   attributes: {
     firstName: {
       type: 'string',
-      maxLength: 30,
       required: true
     },
     lastName: {
       type: 'string',
-      maxLength: 30,
       required: true
     },
     username: {
       type: 'string',
+      minLength: 5,
       maxLength: 30,
       required: true
     },
@@ -44,7 +43,7 @@ module.exports = {
 
   beforeCreate: function (attrs, next) {
   	var bcrypt = require('bcrypt-nodejs');
-
+    attrs.email = attrs.email.toLowerCase();
   	bcrypt.genSalt(10, function(err, salt) {
   		if (err) return next(err);
   		bcrypt.hash(attrs.password, salt, null, function(err, hash) {

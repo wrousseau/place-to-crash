@@ -79,11 +79,8 @@ $(function () {
             if (!$("input:checkbox").prop("checked"))
             {
                 $('#t_and_c_m').modal();
-                $
                 return;
             }
-            if ($(form).isValid())
-                alert("ok");
             validator.defaultSubmit();
         },
         fields: {
@@ -109,13 +106,15 @@ $(function () {
                     callback: {
                         message: "Le nom d'utilisateur est déjà utilisé",
                         callback: function(input) {
+                            if (input.length < 5)
+                                return true;
                             $.ajaxSetup({
                                 async: false
                             });
                             var found = false;
                             $.get("find", function(data) {
                                 $.each(data, function (index, value) {
-                                    if (value.n.data.username.toLowerCase() === input.toLowerCase())
+                                    if (value.data.username.toLowerCase() === input.toLowerCase())
                                         found = true;
                                 });
                             });
@@ -143,13 +142,16 @@ $(function () {
                     callback: {
                         message: "L'email entré est déjà utilisé",
                         callback: function(input) {
+                            var emailRegExp = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                            if (!emailRegExp.test(input))
+                                return true;
                             $.ajaxSetup({
                                 async: false
                             });
                             var found = false;
                             $.get("find", function(data) {
                                 $.each(data, function (index, value) {
-                                    if (value.n.data.email === input.toLowerCase())
+                                    if (value.data.email === input.toLowerCase())
                                         found = true;
                                 });
                             });

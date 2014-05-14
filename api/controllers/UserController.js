@@ -18,8 +18,11 @@
 var UserController = {
     create: function (req, res) {
         if (req.method === "POST") {
-            var email = req.param("email");
-            User.findByEmail(email).done(function(err, usr) {
+            console.log("creating");
+            var email = req.param("email").toLowerCase();
+            User.find()
+            .where({ or: [{email: email}, {username: {"~=":req.param("username")}}]})
+            .done(function(err, usr) {
                 if (err) {
                     console.log(err);
                     req.session.flash = {
@@ -27,27 +30,28 @@ var UserController = {
                     };
                     return res.redirect('/user/signup');
                 } else if (usr.length > 0) {
+                    console.log("already present !");
                     req.session.flash = {
                         err: {
-                            error: "L'adresse email fournie est déjà enregistrée."
+                            error: "L'adresse email ou le nom d'utilisateur fournis sont déjà utilisés."
                         }
                     };
                     return res.redirect('/user/signup');
-                } else {
-                    User.create(req.params.all(), function userCreated (error, user) {
-                        if (error) {
-                            console.log(error);
-                            req.session.flash = {
-                                err: error
-                            };
-
-                            return res.redirect('/user/signup');
-                        }
-
-                        res.json(user);
-                        req.session.flash = {};
-                    });
                 }
+            });
+
+            User.create(req.params.all(), function userCreated (error, user) {
+                if (error) {
+                    console.log(error);
+                    req.session.flash = {
+                        err: error
+                    };
+
+                    return res.redirect('/user/signup');
+                }
+
+                res.json(user);
+                req.session.flash = {};
             });
         }
     },
