@@ -49,7 +49,7 @@ var UserController = {
     signup: function (req, res) {
         res.view();
     },
-    userslist: function (req, res) {
+    index: function (req, res) {
         res.view();
     },
     login: function (req, res) {

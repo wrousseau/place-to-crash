@@ -31,7 +31,11 @@
     <link rel="stylesheet" href="/linker/styles/vendor/bootstrapValidator/bootstrapValidator.css">
     <link rel="stylesheet" href="/linker/styles/bootstrap.css">
     <!--STYLES END-->
-    <%- blocks.localStyles %>
+    <% if ( typeof styles !== 'undefined' ) { %>
+      <% for (i = 0; i < styles.length; i++) { %>
+        <link rel="stylesheet" href="<%- styles[i] %>">
+      <% } %>
+    <% } %>
   </head>
 
   <body>
@@ -132,6 +136,10 @@
     <script src="/linker/js/vendor/bootstrap/bootstrap.min.js"></script>
     <script src="/linker/js/vendor/bootstrapValidator/bootstrapValidator.js"></script>
     <!--SCRIPTS END-->
-    <%- blocks.localScripts %>
+    <% if ( typeof scripts !== 'undefined' ) { %>
+      <% for (i = 0; i < scripts.length; i++) { %>
+        <script src="<%- scripts[i] %>"></script>
+      <% } %>
+    <% } %>
   </body>
 </html>

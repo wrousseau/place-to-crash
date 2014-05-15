@@ -36,32 +36,32 @@ module.exports.routes = {
     view: 'home/index'
   },
 
-  /*
+/*
 // But what if you want your home page to display
 // a signup form located at `views/user/signup.ejs`?
 '/': {
 view: 'user/signup'
-}*/
+}
 
-  /*
+
 // Let's say you're building an email client, like Gmail
 // You might want your home route to serve an interface using custom logic.
 // In this scenario, you have a custom controller `MessageController`
 // with an `inbox` action.
-'/': 'MessageController.inbox'*/
+'/': 'MessageController.inbox'
 
 
-  /*
+
 // Alternatively, you can use the more verbose syntax:
 '/': {
 controller: 'MessageController',
 action: 'inbox'
-}*/
+}
 
-  /*
+
 // If you decided to call your action `index` instead of `inbox`,
 // since the `index` action is the default, you can shortcut even further to:
-'/': 'MessageController'*/
+'/': 'MessageController'
 
 
   // Up until now, we haven't specified a specific HTTP method/verb
@@ -78,7 +78,7 @@ action: 'inbox'
   // </form>
   'post /signup': 'UserController.signup'
 
-  /*
+
 // What about the ever-popular "vanity URLs" aka URL slugs?
 // (you might remember doing this with `mod_rewrite` in Apache)
 //
