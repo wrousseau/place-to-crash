@@ -49,6 +49,9 @@ var UserController = {
     signup: function (req, res) {
         res.view();
     },
+    userslist: function (req, res) {
+        res.view();
+    },
     login: function (req, res) {
         res.view();
     }
