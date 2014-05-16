@@ -1,9 +1,13 @@
 $(function() {
-	$.get('find', function(data){
+	$.get('user/find', function(data){
 		$.each(data, function (index, value) {
-			$( ".list-group" ).append(
-			 "<li class='list-group-item'>"+value.username+"</li>"
-			 );
+			$( ".tbody" ).append(
+				"<tr>" +
+	            "<td>" + value.firstName + "</td>" +
+	            "<td>" + value.lastName + "</td>" +
+	            "<td>" + value.username + "</td>" +
+	         	"</tr>"
+			);
         });
 	})
 })
