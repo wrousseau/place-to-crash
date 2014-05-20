@@ -22,7 +22,7 @@ For front-end package management, PlaceToCrash relies on Bower and Grunt tasks. 
     npm install -g bower
     npm install -g sails
 
-Finally, PlaceToCrash's Graph Database is Neo4j, which requires to be installed and launched on your local machine (requires Java JDK). For all platforms, instructions are available on their [official website](http://www.neo4j.org/download). For MacOS X using Homebrew, simply use :
+Finally, PlaceToCrash's Graph Database is Neo4j, which requires to be installed and launched on your local machine (requires Java JDK). For all platforms, instructions are available on their [official website](http://www.neo4j.org/download). For MacOS X using Homebrew, simply run :
 
     brew update
     brew install neo4j
@@ -35,14 +35,20 @@ Installation and Configuration
 
 should install all the needed packages and handle front-end packages, including sails itself and 
 
-The setup for giving your credentiels should be made in config/adapters.js for a production setup and in config/local.js for a development setting. Default values should be relevant if you followed the basic neo4j installation.
+The setup for giving your credentiels should be made in config/adapters.js for a production setup and in config/local.js for a development setting. 
+
+Because this file is included in the .gitignore by default, we have added a config/.local.js which you can copy (then edit to reflect your configuration) using 
+
+    cp config/.local.js config/local.js
+
+Current values should be relevant is you followed the default neo4j installation.
 
 Running
 -------
 
     sails lift
 
-Should launch the server on the port specified in config/local.js
+Should launch the server on the port specified in config/local.js (if added)
 
 Licence
 -------
