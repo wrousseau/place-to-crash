@@ -50,7 +50,7 @@ $(function () {
                             var found = false;
                             $.get("../find", function(data) {
                                 $.each(data, function (index, value) {
-                                    if (value.username.toLowerCase() === input.toLowerCase() && value.id !== $("#userId").val())
+                                    if (value.username.toLowerCase() === input.toLowerCase() && value.id !== parseInt($("#userId").val()))
                                         found = true;
                                 });
                             });
@@ -80,8 +80,10 @@ $(function () {
                             var found = false;
                             $.get("../find", function(data) {
                                 $.each(data, function (index, value) {
-                                    if (value.email === input.toLowerCase() && value.id !== $("#userId").val())
+                                    if (value.email === input.toLowerCase() && value.id !== parseInt($("#userId").val()))
                                     {
+                                        alert(typeof value.id);
+                                        alert(typeof $("#userId").val());
                                         found = true;
                                     }
                                 });
