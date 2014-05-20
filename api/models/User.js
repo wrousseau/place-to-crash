@@ -64,4 +64,14 @@ module.exports = {
         });
     },
 
+    beforeUpdate: function (attrs, next) {
+        User.find()
+        .where({ or: [{email: attrs.email}, {username: {"~=":attrs.username}}]})
+        .done(function(err, usr) {
+            if (err) return next(err);
+            else if (usr.length > 0 && parseInt(usr[0].id) !== attrs.id) return next({error: "L'adresse email ou le nom d'utilisateur fournis sont déjà utilisés."});
+            next();
+        });
+    },
+
 };

@@ -20,7 +20,6 @@ var UserController = {
         if (req.method === "POST") {
             User.create(req.params.all(), function userCreated (error, user) {
                 if (error) {
-                    console.log(error);
                     req.session.flash = {
                         err: error
                     };
@@ -38,8 +37,7 @@ var UserController = {
         User.findOne(req.param('id'), function foundUser (err, user) {
             if (err) return next(err);
             if (!user) {
-                console.log("none found...");
-                return next();
+                return next("L'utilisateur n'existe pas.");
             }
             res.view({
                 user: user
@@ -50,8 +48,7 @@ var UserController = {
         User.findOne(req.param('id'), function foundUser (err, user) {
             if (err) return next(err);
             if (!user) {
-                console.log("none found...");
-                return next();
+                return next("L'utilisateur n'existe pas.");
             }
             res.view({
                 user: user
@@ -61,6 +58,9 @@ var UserController = {
     update: function (req, res, next) {
         User.update(req.param('id'), req.params.all(), function userUpdated (err) {
             if (err) {
+                req.session.flash = {
+                    err: err
+                };
                 return res.redirect('/user/edit/' + req.param('id'));
             }
 
