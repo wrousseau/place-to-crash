@@ -35,7 +35,7 @@ var UserController = {
         }
     },
     show: function (req, res, next) {
-        User.findOne(req.params['id'], function foundUser (err, user) {
+        User.findOne(req.param('id'), function foundUser (err, user) {
             if (err) return next(err);
             if (!user) {
                 console.log("none found...");
@@ -44,6 +44,40 @@ var UserController = {
             res.view({
                 user: user
             });
+        });
+    },
+    edit: function (req, res, next) {
+        User.findOne(req.param('id'), function foundUser (err, user) {
+            if (err) return next(err);
+            if (!user) {
+                console.log("none found...");
+                return next();
+            }
+            res.view({
+                user: user
+            });
+        });
+    },
+    update: function (req, res, next) {
+        User.update(req.param('id'), req.params.all(), function userUpdated (err) {
+            if (err) {
+                return res.redirect('/user/edit/' + req.param('id'));
+            }
+
+            res.redirect('/user/show/' + req.param('id'));
+        });
+    },
+    destroy: function (req, res, next) {
+        User.findOne(req.param('id'), function foundUser(err, user) {
+            if (err) return next(err);
+
+            if (!user) return next("L'utilisateur n'existe pas.");
+
+            User.destroy(req.param('id'), function userDestroyed(err) {
+                if (err) return next(err);
+            });
+
+            res.redirect('/user');
         });
     },
     signup: function (req, res) {
