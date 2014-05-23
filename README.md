@@ -22,7 +22,7 @@ For front-end package management, PlaceToCrash relies on Bower and Grunt tasks. 
     npm install -g bower
     npm install -g sails
 
-Finally, PlaceToCrash's Graph Database is Neo4j, which requires to be installed and launched on your local machine (requires Java JDK). For all platforms, instructions are available on their [official website](http://www.neo4j.org/download). For MacOS X using Homebrew, simply run :
+Finally, PlaceToCrash's Graph Database is Neo4j, which requires to be installed and launched on your local machine (requires Java JDK). For all platforms, instructions are available on their [official website](http://www.neo4j.org/download). For MacOS X using Homebrew, simply run on a Terminal :
 
     brew update
     brew install neo4j
