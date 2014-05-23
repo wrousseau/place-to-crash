@@ -1,5 +1,5 @@
 $(function(socket) {
-	socket.get('user/find', function(data){
+	socket.get('/user/find', function(data){
 		$.each(data, function (index, value) {
 			$( ".tbody" ).append(
 				"<tr>" +

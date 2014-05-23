@@ -82,8 +82,6 @@ $(function () {
                                 $.each(data, function (index, value) {
                                     if (value.email === input.toLowerCase() && value.id !== parseInt($("#userId").val()))
                                     {
-                                        alert(typeof value.id);
-                                        alert(typeof $("#userId").val());
                                         found = true;
                                     }
                                 });
@@ -98,4 +96,5 @@ $(function () {
             },
         }
     });
+
 });

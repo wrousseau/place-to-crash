@@ -41,7 +41,8 @@ module.exports = {
   			res.redirect('/user/login');
   			return;
   		}
-
+  		console.log("here");
+  		console.log(user);
 	  	bcrypt.compare(req.param('password'), user.password, function(err, valid) {
 	  		console.log(user.password);
 	  		console.log(err);

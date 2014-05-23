@@ -16,6 +16,9 @@
  */
 
 var UserController = {
+    /*
+     * Creating a new user (POST request from the signup form)
+     */
     create: function (req, res, next) {
         if (req.method === "POST") {
             User.create(req.params.all(), function userCreated (error, user) {
@@ -26,13 +29,18 @@ var UserController = {
 
                     return res.redirect('/user/signup');
                 }
-                    
+
+                req.session.authenticated = true;
+                req.session.User = user["0"];
                 res.redirect('/user/show/'+user["0"].id)
             });
         } else {
             return res.redirect('/user/signup');
         }
     },
+    /*
+     * Displaying a user given its id (in the route)
+     */
     show: function (req, res, next) {
         User.findOne(req.param('id'), function foundUser (err, user) {
             if (err) return next(err);
@@ -44,6 +52,9 @@ var UserController = {
             });
         });
     },
+    /*
+     * Editing a user given its id (in the route)
+     */
     edit: function (req, res, next) {
         User.findOne(req.param('id'), function foundUser (err, user) {
             if (err) return next(err);
@@ -55,6 +66,9 @@ var UserController = {
             });
         });
     },
+    /*
+     * Updating a user
+     */
     update: function (req, res, next) {
         User.update(req.param('id'), req.params.all(), function userUpdated (err) {
             if (err) {
@@ -67,6 +81,9 @@ var UserController = {
             res.redirect('/user/show/' + req.param('id'));
         });
     },
+    /*
+     * Deleting a user
+     */
     destroy: function (req, res, next) {
         User.findOne(req.param('id'), function foundUser(err, user) {
             if (err) return next(err);
@@ -80,12 +97,21 @@ var UserController = {
             res.redirect('/user');
         });
     },
+    /*
+     * Signup view
+     */
     signup: function (req, res) {
         res.view();
     },
+    /*
+     * List of Users
+     */
     index: function (req, res) {
         res.view();
     },
+    /*
+     * Login view
+     */
     login: function (req, res) {
         res.view();
     }

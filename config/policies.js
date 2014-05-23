@@ -21,7 +21,9 @@ module.exports.policies = {
   user: {
   	'signup': ['moduleAssetsInjector', 'flash'],
   	'login': ['moduleAssetsInjector', 'flash'],
-  	'*': "isAuthenticated"
+  	create: ['moduleAssetsInjector', 'flash'],
+  	find: ['moduleAssetsInjector', 'flash'],
+  	'*': ['moduleAssetsInjector', 'flash', 'isAuthenticated']
   }
 
   /*
