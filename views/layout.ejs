@@ -57,15 +57,29 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li><a href="/user/signup">S'enregistrer</a></li>
-            <li><a href="/user/login">Se Connecter</a></li>
+            <% if (session.authenticated) { %>
+              <li><a href="/user/show/<%= session.User.id %>">Profil</a></li>
+              <li><a href="/user">Utilisateurs</a></li>
+            <% } else { %>
+              <li><a href="/user/signup">S'enregistrer</a></li>
+              <li><a href="/user/login">Se Connecter</a></li>
+            <% } %>
           </ul>
-          <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Recherche">
-            </div>
-            <button type="submit" class="btn btn-default">Rechercher</button>
-          </form>
+          <div class="navbar-right">
+            <ul class="nav navbar-nav">
+              <li>
+                <form class="navbar-form">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Recherche">
+                  </div>
+                  <button type="submit" class="btn btn-default">Rechercher</button>
+                </form>
+              </li>
+              <% if (session.authenticated) { %>
+                <li><a href="/session/destroy">Déconnexion</a></li> 
+              <% } %>
+            </ul>
+          </div>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
