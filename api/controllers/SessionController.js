@@ -34,18 +34,15 @@ module.exports = {
   		if (err) return next(err);
 
   		if (!user) {
-  			var noAccountError = [{name: 'noAccount', message: "L'adresse email" + req.param('email') + " est introuvable"}];
+  			var noAccountError = [{name: 'noAccount', message: "L'adresse email " + req.param('email') + " est introuvable"}];
   			req.session.flash = {
   				err: noAccountError
   			}
   			res.redirect('/user/login');
   			return;
   		}
-  		console.log("here");
-  		console.log(user);
+
 	  	bcrypt.compare(req.param('password'), user.password, function(err, valid) {
-	  		console.log(user.password);
-	  		console.log(err);
 	  		if (err) return next(err);
 
 	  		if (!valid) {
