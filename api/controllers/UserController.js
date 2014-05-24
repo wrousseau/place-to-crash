@@ -31,8 +31,8 @@ var UserController = {
                 }
 
                 req.session.authenticated = true;
-                req.session.User = user["0"];
-                res.redirect('/user/show/'+user["0"].id)
+                req.session.User = user;
+                res.redirect('/user/show/'+user.id)
             });
         } else {
             return res.redirect('/user/signup');
