@@ -75,10 +75,12 @@ module.exports = {
     },
 
     /*
-     * When editing a user profile, the username or email cannot be changed to 
+     * When editing a user profile's email or username, they cannot be changed to 
      * values already used by another user
      */
     beforeUpdate: function (attrs, next) {
+        if (!attrs.hasOwnProperty("email") || !attrs.hasOwnProperty("username"))
+            return next();
         User.find()
         .where({ or: [{email: attrs.email}, {username: {"~=":attrs.username}}]})
         .done(function(err, usr) {
