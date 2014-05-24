@@ -103,6 +103,18 @@ var UserController = {
         });
     },
     /*
+     * Linking a user to a location
+     */
+    link: function (req, res, next) {
+        User.link({id: req.param('userid')}, "location", {id : req.param('locationid')}, 'LIVES_IN', {}, function livesIn(err, relationship) {
+            if (err) return next(err);
+
+            if (!relationship) return next("Pas de connexion établie.");
+
+            return res.json(relationship);
+        });
+    },
+    /*
      * Signup view
      */
     signup: function (req, res) {

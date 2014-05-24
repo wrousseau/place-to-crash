@@ -11,11 +11,6 @@ module.exports = {
   adapter: 'neo4j',
 
   attributes: {
-  	user: {
-      type: 'string',
-      maxLength: 30,
-      required: false
-    },
   	lat: {
       type: 'int',
       required: false
@@ -27,7 +22,7 @@ module.exports = {
     country: {
       type: 'string',
       maxLength: 30,
-      required: false
+      required: true
     },
     city: {
       type: 'string',
@@ -53,9 +48,6 @@ module.exports = {
       maxLength: 100,
       required: false
     }
-  	/* e.g.
-  	nickname: 'string'
-  	*/
     
   }
 

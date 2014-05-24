@@ -36,6 +36,8 @@ module.exports.routes = {
     view: 'home/index'
   },
 
+  '/user/:userid/resides/:locationid': 'UserController.link'
+
 /*
 // But what if you want your home page to display
 // a signup form located at `views/user/signup.ejs`?
@@ -90,6 +92,7 @@ action: 'inbox'
 // so we need to set up this route to ignore URLs that have a trailing ".":
 // (e.g. your javascript, CSS, and image files)
 'get /*(^.*)': 'UserController.profile'*/
+
 };
 
 

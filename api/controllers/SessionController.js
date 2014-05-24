@@ -29,7 +29,6 @@ module.exports = {
   		res.redirect('/user/login');
   		return;
   	}
-
   	User.findOneByEmail(req.param('email').toLowerCase()).done(function(err, user) {
   		if (err) return next(err);
 
