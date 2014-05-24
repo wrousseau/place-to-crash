@@ -5,3 +5,11 @@
 table a, .table a {
 	text-decoration: none;
 }
+
+.user-status .glyphicon-ok {
+	color: #28b62c
+}
+
+.user-status .glyphicon-remove {
+	color: #ff4136
+}
